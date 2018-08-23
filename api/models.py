@@ -18,17 +18,18 @@ class Bookmark(models.Model):
         return self.issue
 
 
-class Note(models.Model):
+class Command(models.Model):
     issue = models.CharField(max_length=255)
-    cmd = models.CharField(max_length=255)
+    cmd = models.CharField(max_length=255, unique=True)
     remark = models.CharField(max_length=255, default='null')
     sort = models.CharField(max_length=20, default='unknown')
-    create_time = models.DateTimeField()
-    update_time = models.DateTimeField()
+    create_time = models.DateTimeField(auto_now_add=True)
+    update_time = models.DateTimeField(auto_now=True)
     is_deleted = models.IntegerField(default=0)
+    owner = models.ForeignKey('auth.User', related_name='commands', on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'note'
+        db_table = 'command'
         ordering = ('sort',)
 
     def __str__(self):

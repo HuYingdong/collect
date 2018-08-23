@@ -16,10 +16,10 @@ CREATE TABLE `bookmark` (
   `is_deleted` tinyint(1) not null default '0'
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
-CREATE TABLE `note` (
+CREATE TABLE `command` (
   `id` int(11) NOT NULL AUTO_INCREMENT primary key,
   `issue` varchar(255) not null,
-  `cmd` varchar(255) not null,
+  `cmd` varchar(255) not null unique,
   `remark` varchar(255) not null default 'null',
   `sort` varchar(20) not null DEFAULT 'unknown',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
