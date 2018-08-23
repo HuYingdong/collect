@@ -5,7 +5,7 @@ from api import views
 router = DefaultRouter()
 
 router.register(r'bookmarks', views.BookmarkViewSet)
-router.register(r'commands', views.CommandVIewSet)
+router.register(r'commands', views.CommandViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [

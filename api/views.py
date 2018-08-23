@@ -42,7 +42,7 @@ class BookmarkViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
-class CommandVIewSet(viewsets.ModelViewSet):
+class CommandViewSet(viewsets.ModelViewSet):
     """
     命令列表
     """
