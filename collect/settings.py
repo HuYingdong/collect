@@ -131,4 +131,17 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+
+    # 'DEFAULT_AUTHENTICATION_CLASSES': ['api.authtications.UserAuthentication', ],
+    # # 'UNAUTHENTICATED_USER': lambda: '匿名用户',
+    # 'UNAUTHENTICATED_USER': None,
+    # 'UNAUTHENTICATED_TOKEN': None,
+    # 'DEFAULT_PERMISSION_CLASSES': ['api.permissions.Userpermission', ],
+
+    # 'DEFAULT_THROTTLE_CLASSES': [],
+    # 'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_THROTTLE_RATES': {
+        'ip': '3/m',
+        'user': '10/m',
+    }
 }
