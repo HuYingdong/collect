@@ -130,7 +130,7 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 5,
 
     # 'DEFAULT_AUTHENTICATION_CLASSES': ['api.authtications.UserAuthentication', ],
     # # 'UNAUTHENTICATED_USER': lambda: '匿名用户',
