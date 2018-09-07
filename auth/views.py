@@ -1,19 +1,19 @@
-# -*- coding: utf-8 -*-
 from django.db import transaction, connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from api import status_code
-from api.status_code import handle_exception
+from auth import status_code
 from auth.sql_utils import Mysql
-from auth.sql.models import UserInfo, UserToken
-from utils import md5
-from auth.sql.authtications import UserAuthentication
-from auth.sql.permissions import Userpermission
-from auth.sql.throttles import VisitThrottle, UserThrottle
+from auth.status_code import handle_exception
+from auth.models import UserInfo, UserToken
+from .helper import md5
+from auth.authtications import UserAuthentication
+from auth.permissions import Userpermission
+from auth.throttles import VisitThrottle, UserThrottle
 import logging
 
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s: %(message)s', level=logging.DEBUG, datefmt='%Y-%m-%d %X')
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
+                    level=logging.DEBUG, datefmt='%Y-%m-%d %X')
 logger = logging.getLogger('auth.view')
 
 
@@ -22,6 +22,8 @@ class AuthView(APIView):
     用户登录认证
     """
     throttle_classes = [VisitThrottle, ]
+    # authentication_classes = [UserAuthentication, ]
+    # permission_classes = [Userpermission, ]
 
     def get(self, request, *args, **kwargs):
         ret = {'code': 1000, 'msg': None}
@@ -86,8 +88,8 @@ class NotifyView(APIView):
                 except Exception as e:
                     import traceback
                     traceback.print_exc()
-                    print('error:%s' % e.message)
-                    return status_code.db_error(e.message)
+                    print('error:%s' % e)
+                    return status_code.db_error(e)
 
     @staticmethod
     @handle_exception
@@ -112,8 +114,8 @@ class NotifyView(APIView):
                 except Exception as e:
                     import traceback
                     traceback.print_exc()
-                    print('error:%s' % e.message)
-                    return status_code.db_error(e.message)
+                    print('error:%s' % e)
+                    return status_code.db_error(e)
 
     @staticmethod
     @handle_exception
@@ -137,8 +139,8 @@ class NotifyView(APIView):
                 except Exception as e:
                     import traceback
                     traceback.print_exc()
-                    print('error:%s' % e.message)
-                    return status_code.db_error(e.message)
+                    print('error:%s' % e)
+                    return status_code.db_error(e)
 
     @staticmethod
     @handle_exception
@@ -162,5 +164,5 @@ class NotifyView(APIView):
                 except Exception as e:
                     import traceback
                     traceback.print_exc()
-                    print('error:%s' % e.message)
-                    return status_code.db_error(e.message)
+                    print('error:%s' % e)
+                    return status_code.db_error(e)

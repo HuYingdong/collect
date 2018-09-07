@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from django.db import models
 
 
@@ -16,7 +14,7 @@ class UserInfo(models.Model):
     password = models.CharField(max_length=64)
 
     class Meta:
-        db_table = 'userinfo'
+        db_table = 'user_info'
 
 
 class UserToken(models.Model):
@@ -27,4 +25,4 @@ class UserToken(models.Model):
     # 次数限制
 
     class Meta:
-        db_table = 'usertoken'
+        db_table = 'user_token'

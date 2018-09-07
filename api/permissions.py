@@ -10,14 +10,3 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         return obj.owner == request.user
-
-
-class Userpermission(permissions.BasePermission):
-
-    message = '你没有权限~'
-
-    def has_permission(self, request, view):
-        if request.user.user_type != 3:
-            return False
-
-        return True
