@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly,)
 
 
 class BookmarkViewSet(viewsets.ModelViewSet):
@@ -22,7 +23,7 @@ class BookmarkViewSet(viewsets.ModelViewSet):
     """
     queryset = Bookmark.objects.all()
     serializer_class = BookmarkSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly,)
 
     list_show = ['issue', 'url', 'detail']
 
@@ -48,7 +49,7 @@ class CommandViewSet(viewsets.ModelViewSet):
     """
     queryset = Command.objects.all()
     serializer_class = CommandSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
 
     show = ['issue', 'cmd', 'detail']
 
